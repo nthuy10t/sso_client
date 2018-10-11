@@ -1,7 +1,13 @@
 class SessionsController < ApplicationController
   layout "application"
   
+  def new
+  end
+
   def create
+  end
+
+  def create_omni_auth
     @user = User.where(email: auth.info.email, uid: auth.uid).first
     unless @user
       @user = User.new(email: auth.info.email, uid: auth.uid)
@@ -13,7 +19,7 @@ class SessionsController < ApplicationController
   
   def destroy
     session[:user_id] = nil
-    redirect_to "#{ENV["PROVIDER_URL"]}/users/logout"
+    redirect_to "#{ENV["PROVIDER_URL"]}/users/sign_out"
   end
 
   def failure

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :sessions
   root "home#index"
 
-  get '/auth/:provider/callback', to: 'sessions#create'
+  get '/auth/:provider/callback', to: 'sessions#create_omni_auth'
   get '/auth/failure', to: 'sessions#failure'
 
   match '/logout', to: "sessions#destroy", via: :all
